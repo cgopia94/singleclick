@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<title>singleclick test</title>
+	<style>
+		#myBtn {
+			width: 5em;
+			height: 4em;
+		}
+	</style>
+</head>
+<body>
+	<div>
+	  <button id="myBtn">Click me</button>
+	</div>
+	<div id="myMsg"></div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="../src/INHANCE_singleclick.jquery.js"></script>
+	<script>
+		$('#myBtn').sclick({events: 'click touchstart'}).on('touchstart click', function (evt) {
+			evt.preventDefault();
+			$('#myMsg').prepend('<br />' + evt.type);
+		});
+
+		
+	</script>
+</body>
+</html>
