@@ -1,28 +1,23 @@
 // JQuery plugin to keep the same multiple events from being fired in a short period of time 
 // version: 0.0.1
-// date: 11/03/2016
+// date: 01/09/2017
 // Author: Myeong Kim
 // Example:
 // $('#theButton').sclick().on('click', function (evt) {...});
 
 (function ($) {
 	'use strict';
-	$.fn.sclick = function(options) {
-		var settings;
-
-		var defaults = {
-			events: 'click',
-			delay: 300
-		};
-
-		settings = $.extend(defaults, options);
-
+	$.fn.sclick = function(events, target, delay) {
+		events = events || 'click';
+		target = target || '';
+		delay = delay || 300;
+		
 		return this.each(function () {
-			$(this).on(settings.events.split(' ').join('.sclick '), function (evt) {
+			$(this).on(events.split(' ').join('.sclick '), target, function (evt) {
 				var timeSaved = $(this).data('whenSingleClicked');
 				var timeCurr = new Date().getTime();
 				var timeDiff = timeCurr - timeSaved;
-				if (timeSaved && timeDiff < settings.delay) {
+				if (timeSaved && timeDiff < delay) {
 					evt.stopImmediatePropagation();
 				}
 				
