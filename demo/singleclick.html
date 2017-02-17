@@ -21,12 +21,12 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="../src/INHANCE_singleclick.jquery.js"></script>
 	<script>
-		$('#myBtn').sclick('click touchstart', function (evt) {
+		$('#myBtn').sclick('click tap', function (evt) {
 			evt.preventDefault();
 			$('#myMsg').prepend('<br />' + evt.type);
 		});
 
-		$('#btn-wrapper').sclick('click touchstart', 'button', function (evt) {
+		$('#btn-wrapper').sclick('click tap', 'button', function (evt) {
 			evt.preventDefault();
 			$('#myMsg').prepend('<br />' + evt.type);
 		});
