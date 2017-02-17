@@ -12,15 +12,21 @@
 	</style>
 </head>
 <body>
+	<button id="myBtn">Click me</button>
 	<div id="btn-wrapper">
-	  <button id="myBtn">Click me</button>
+	  <button>Click me - I am in a wrapper</button>
 	</div>
 	<div id="myMsg"></div>
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="../src/INHANCE_singleclick.jquery.js"></script>
 	<script>
-		$('#myBtn').sclick('click touchstart').on('touchstart click', function (evt) {
+		$('#myBtn').sclick('click touchstart', function (evt) {
+			evt.preventDefault();
+			$('#myMsg').prepend('<br />' + evt.type);
+		});
+
+		$('#btn-wrapper').sclick('click touchstart', 'button', function (evt) {
 			evt.preventDefault();
 			$('#myMsg').prepend('<br />' + evt.type);
 		});
