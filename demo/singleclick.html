@@ -21,16 +21,18 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="../src/INHANCE_singleclick.jquery.js"></script>
 	<script>
-		$('#myBtn').sclick('click tap', function (evt) {
+		$('#myBtn').on('sclick', function (evt) {
 			evt.preventDefault();
-			$('#myMsg').prepend('<br />' + evt.type);
+			$('#myMsg').prepend('<br />' + evt.type + ' hello1~');
 		});
 
-		$('#btn-wrapper').sclick('click tap', 'button', function (evt) {
+		$('#btn-wrapper').on('sclick', 'button', function (evt) {
 			evt.preventDefault();
-			$('#myMsg').prepend('<br />' + evt.type);
+			$('#myMsg').prepend('<br />' + evt.type + ' hello2!');
+			// $('#myBtn').trigger('sclick');
 		});
 
+		
 		
 	</script>
 </body>
