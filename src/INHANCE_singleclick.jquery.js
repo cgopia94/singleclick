@@ -28,7 +28,6 @@
         var timeDiff = timeCurr - timeSaved;
         var trigger = false;
         if (evt.type == 'touchstart' || evt.type == 'touchend') {
-          // alert('hi3' + tappedInTime);
           if (tappedInTime && (!timeSaved || timeSaved && timeDiff > delay)) {
             trigger = true;
           }
