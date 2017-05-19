@@ -1,6 +1,6 @@
 // JQuery plugin to keep the same multiple events from being fired in a short period of time 
-// version: 0.0.3
-// date: 05/04/2017
+// version: 0.0.4
+// date: 05/19/2017
 // Author: Myeong Kim
 // Example:
 // $('#theButton').on('sclick', ....);
@@ -13,7 +13,6 @@
   $.event.special.sclick = {
     setup: function () {
       $(this).on(events, function (evt) {
-        evt.preventDefault();
         var tappedInTime = false;
         var timeCurr = new Date().getTime();
         if (evt.type == 'touchstart') {
@@ -43,7 +42,7 @@
 
           $.event.dispatch.call(this, evt);
           evt.type = originalType;
-
+          evt.preventDefault();
 
         }
 
