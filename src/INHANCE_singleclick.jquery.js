@@ -1,14 +1,23 @@
 // JQuery plugin to keep the same multiple events from being fired in a short period of time 
-// version: 0.0.4
-// date: 05/19/2017
+// version: 0.0.5
+// date: 11/3/2017
 // Author: Myeong Kim
 // Example:
 // $('#theButton').on('sclick', ....);
 
-(function ($) {
-  'use strict';
-  var events = 'click.sclick touchstart.sclick touchend.sclick';
-  var delay = 300;
+var INHANCE_singleclick = (function ($) {
+	'use strict';
+	var settings;
+	var events = 'click.sclick touchstart.sclick touchend.sclick';
+	var defaults = {
+		delay: 300
+	};
+		
+	function set(options) {
+		settings = $.extend(defaults, options);
+	}
+
+	settings = defaults;
 
   $.event.special.sclick = {
     setup: function () {
@@ -20,7 +29,7 @@
         }
         else if (evt.type == 'touchend') {
           var timeTouchSaved = $(this).data('whenTouched');
-          if (timeTouchSaved && (timeCurr - timeTouchSaved < delay * 2)) {
+          if (timeTouchSaved && (timeCurr - timeTouchSaved < settings.delay * 2)) {
             tappedInTime = true;
           }
         }
@@ -28,11 +37,11 @@
         var timeDiff = timeCurr - timeSaved;
         var trigger = false;
         if (evt.type == 'touchstart' || evt.type == 'touchend') {
-          if (tappedInTime && (!timeSaved || timeSaved && timeDiff > delay)) {
+          if (tappedInTime && (!timeSaved || timeSaved && timeDiff > settings.delay)) {
             trigger = true;
           }
         }
-        else if (!timeSaved || timeSaved && timeDiff > delay) {
+        else if (!timeSaved || timeSaved && timeDiff > settings.delay) {
           trigger = true;
         } 
         
@@ -54,5 +63,9 @@
     remove: function () {
       $(this).off(events);
     }
-  };
+	};
+	
+	return {
+		set: set
+	};
 }(jQuery));

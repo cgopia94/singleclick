@@ -23,11 +23,13 @@
 	<script>
 		$('#myBtn').on('sclick', function (evt) {
 			evt.preventDefault();
+			INHANCE_singleclick.set({delay: 300});
 			$('#myMsg').prepend('<br />' + evt.type + ' hello1~');
 		});
 
 		$('#btn-wrapper').on('sclick', 'button', function (evt) {
 			evt.preventDefault();
+			INHANCE_singleclick.set({delay: 800});
 			$('#myMsg').prepend('<br />' + evt.type + ' hello2!');
 			// $('#myBtn').trigger('sclick');
 		});
